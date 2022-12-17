@@ -12,14 +12,14 @@ use home::home_dir;
 
 fn main() {
     let mut tray = TrayItem::new("📨", "").unwrap();
-    tray.add_menu_item("启动", || {
+    tray.add_menu_item("Start", || {
         std::thread::spawn(move || {
             let auto_input = true;
-            let flag = "验证码";
-            let chat_db_path = home_dir().expect("获取用户目录失败").join("Library/Messages/chat.db-wal");
-            let mut last_metadata_modified = fs::metadata(&chat_db_path).expect("获取元数据失败").modified().unwrap();
+            let flag = "인증";
+            let chat_db_path = home_dir().expect("사용자 디렉터리를 가져오지 못했습니다").join("Library/Messages/chat.db-wal");
+            let mut last_metadata_modified = fs::metadata(&chat_db_path).expect("메타데이터를 가져오지 못했습니다").modified().unwrap();
             loop{
-                let now_metadata = fs::metadata(&chat_db_path).expect("获取元数据失败").modified().unwrap();
+                let now_metadata = fs::metadata(&chat_db_path).expect("메타데이터를 가져오지 못했습니다").modified().unwrap();
                 if now_metadata != last_metadata_modified{
                     last_metadata_modified = now_metadata;
                     let stdout = get_message_in_one_minute();
@@ -38,7 +38,7 @@ fn main() {
     }).unwrap();
 
     let inner = tray.inner_mut();
-    inner.add_quit_item("退出");
+    inner.add_quit_item("Exit");
     inner.display();
 }
 
@@ -62,7 +62,7 @@ fn get_message_in_one_minute() -> String{
                                 .arg("/Users/ls/Library/Messages/chat.db")
                                 .arg("SELECT text FROM message WHERE datetime(date/1000000000 + 978307200,\"unixepoch\",\"localtime\") > datetime(\"now\",\"localtime\",\"-60 second\") ORDER BY date DESC LIMIT 1;")
                                 .output()
-                                .expect("sqlite命令运行失败");
+                                .expect("sqlite 명령어 실패");
     let stdout = String::from_utf8(output.stdout).unwrap();
     return stdout;
 }
