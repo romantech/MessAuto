@@ -3,17 +3,6 @@
 version = 3
 
 [[package]]
-name = "MessAuto"
-version = "0.1.0"
-dependencies = [
- "clipboard",
- "enigo",
- "home",
- "regex",
- "tray-item",
-]
-
-[[package]]
 name = "aho-corasick"
 version = "0.7.20"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -607,6 +596,17 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5aa361d4faea93603064a027415f07bd8e1d5c88c9fbf68bf56a285428fd79ce"
 dependencies = [
  "autocfg",
+]
+
+[[package]]
+name = "messauto"
+version = "0.1.0"
+dependencies = [
+ "clipboard",
+ "enigo",
+ "home",
+ "regex",
+ "tray-item",
 ]
 
 [[package]]

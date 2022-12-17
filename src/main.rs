@@ -16,7 +16,7 @@ fn main() {
         std::thread::spawn(move || {
             let auto_input = true;
             let flag = "인증";
-            let chat_db_path = home_dir().expect("사용자 디렉터리를 가져오지 못했습니다").join("Library/Messages/chat.db-wal");
+            let chat_db_path = home_dir().expect("사용자 디렉터리를 가져오지 못했습니다").join("~/Library/Messages/chat.db-wal");
             let mut last_metadata_modified = fs::metadata(&chat_db_path).expect("메타데이터를 가져오지 못했습니다").modified().unwrap();
             loop{
                 let now_metadata = fs::metadata(&chat_db_path).expect("메타데이터를 가져오지 못했습니다").modified().unwrap();
@@ -59,7 +59,7 @@ fn get_captcha(stdout:&String) -> String{
 
 fn get_message_in_one_minute() -> String{
     let output = Command::new("sqlite3")
-                                .arg("/Users/ls/Library/Messages/chat.db")
+                                .arg("~/Library/Messages/chat.db")
                                 .arg("SELECT text FROM message WHERE datetime(date/1000000000 + 978307200,\"unixepoch\",\"localtime\") > datetime(\"now\",\"localtime\",\"-60 second\") ORDER BY date DESC LIMIT 1;")
                                 .output()
                                 .expect("sqlite 명령어 실패");

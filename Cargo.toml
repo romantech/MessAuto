@@ -1,5 +1,5 @@
 [package]
-name = "MessAuto"
+name = "messauto"
 version = "0.1.0"
 edition = "2021"
 description = "Automatically extract the captcha and paste it back."
@@ -16,6 +16,6 @@ tray-item = "0.7.1"
 [package.metadata.bundle]
 name = "MessAuto"
 identifier = "com.doe.messauto"
-icon = ["icon.png"]
+icon = ["icon.icns"]
 copyright = "Copyright (c) LeeeSe 2022. All rights reserved."
 short_description = "Automatically extract the captcha and paste it back."
